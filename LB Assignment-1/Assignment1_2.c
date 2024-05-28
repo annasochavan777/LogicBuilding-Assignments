@@ -19,6 +19,49 @@ int main()
 	
 	return 0;
 }
+using System;
+using System.ServiceModel.Configuration;
+
+namespace MyServiceLibrary
+{
+    public class CustomEndpointBehaviorExtension : BehaviorExtensionElement
+    {
+        protected override object CreateBehavior()
+        {
+            return new CustomEndpointBehavior();
+        }
+
+        public override Type BehaviorType
+        {
+            get { return typeof(CustomEndpointBehavior); }
+        }
+    }
+}
+
+<configuration>
+  <system.serviceModel>
+    <behaviors>
+      <endpointBehaviors>
+        <behavior name="CustomEndpointBehavior">
+          <customEndpointBehavior />
+        </behavior>
+      </endpointBehaviors>
+    </behaviors>
+    <extensions>
+      <behaviorExtensions>
+        <add name="customEndpointBehavior" type="MyServiceLibrary.CustomEndpointBehaviorExtension, MyServiceLibrary" />
+      </behaviorExtensions>
+    </extensions>
+    <services>
+      <service name="MyServiceLibrary.MyService">
+        <endpoint address="rest" binding="webHttpBinding" contract="MyServiceLibrary.IMyService" behaviorConfiguration="CustomEndpointBehavior"/>
+        <endpoint address="soap" binding="basicHttpBinding" contract="MyServiceLibrary.IMyService" behaviorConfiguration="CustomEndpointBehavior"/>
+        <endpoint address="mex" binding="mexHttpBinding" contract="IMetadataExchange"/>
+      </service>
+    </services>
+  </system.serviceModel>
+</configuration>
+
 
 using System;
 using System.ServiceModel.Channels;
