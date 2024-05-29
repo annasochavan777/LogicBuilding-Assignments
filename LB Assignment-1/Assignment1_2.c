@@ -19,6 +19,8 @@ int main()
 	
 	return 0;
 }
+
+We have assessed the feasibility of the change and confirmed that it is technically possible. Please check with Ram and Kiran to align this change for the upcoming sprint and prioritize it accordingly.
 using System;
 using System.ServiceModel.Configuration;
 
