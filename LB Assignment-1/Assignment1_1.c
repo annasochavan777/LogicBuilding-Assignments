@@ -23,3 +23,12 @@ int main()
 	printf("Division is %d", iRet);
 	return 0;
 }
+
+insert_job: example_job
+job_type: c
+command: echo "Hello, AutoSys!"
+machine: example_machine
+owner: example_user
+run_calendar: example_calendar
+start_times: "12:00"
+description: "This is an example AutoSys job"
