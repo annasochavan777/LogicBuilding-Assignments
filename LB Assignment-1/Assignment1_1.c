@@ -23,5 +23,3 @@ int main()
 	printf("Division is %d", iRet);
 	return 0;
 }
-
-I am not feeling well, so I will be taking a day off today. Regarding the Payslip Calculator AutoSys job testing, only the DBA-related activities are pending. I will connect with Tuchar for 30 minutes to get this sorted out today itself.
