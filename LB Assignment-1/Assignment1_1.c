@@ -23,6 +23,7 @@ int main()
 	printf("Division is %d", iRet);
 	return 0;
 }
+Thank you so much, Ashish, for providing quick assistance in resolving all the case file-related issues.
 WITH LatestOrders AS (
     SELECT
         o.order_id,
