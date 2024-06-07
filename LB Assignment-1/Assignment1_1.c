@@ -23,3 +23,25 @@ int main()
 	printf("Division is %d", iRet);
 	return 0;
 }
+WITH LatestOrders AS (
+    SELECT
+        o.order_id,
+        o.customer_id,
+        o.order_date,
+        o.amount,
+        ROW_NUMBER() OVER (PARTITION BY o.customer_id ORDER BY o.order_date DESC) AS rn
+    FROM
+        orders o
+)
+SELECT
+    c.customer_id,
+    c.customer_name,
+    lo.order_id,
+    lo.order_date,
+    lo.amount
+FROM
+    customers c
+JOIN
+    LatestOrders lo ON c.customer_id = lo.customer_id
+WHERE
+    lo.rn = 1;
