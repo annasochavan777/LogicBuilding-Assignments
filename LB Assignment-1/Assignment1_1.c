@@ -23,26 +23,4 @@ int main()
 	printf("Division is %d", iRet);
 	return 0;
 }
-Thank you so much, Ashish, for providing quick assistance in resolving all the case file-related issues.
-WITH LatestOrders AS (
-    SELECT
-        o.order_id,
-        o.customer_id,
-        o.order_date,
-        o.amount,
-        ROW_NUMBER() OVER (PARTITION BY o.customer_id ORDER BY o.order_date DESC) AS rn
-    FROM
-        orders o
-)
-SELECT
-    c.customer_id,
-    c.customer_name,
-    lo.order_id,
-    lo.order_date,
-    lo.amount
-FROM
-    customers c
-JOIN
-    LatestOrders lo ON c.customer_id = lo.customer_id
-WHERE
-    lo.rn = 1;
+I have reviewed the case and design requirements, but there are still a few details missing and I have some queries regarding certain aspects.
