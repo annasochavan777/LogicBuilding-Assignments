@@ -23,4 +23,4 @@ int main()
 	printf("Division is %d", iRet);
 	return 0;
 }
-I have reviewed the case and design requirements, but there are still a few details missing and I have some queries regarding certain aspects.
+There is no logic currently in place to automatically generate a requirement when there is a rule failure. As a result, a task is created, and the underwriter needs to take action manually. If you want to automate the generation of this requirement, please provide us with the specific logic that should trigger the requirement. Alternatively, you can supply us with the corresponding DP (Decision Point) codes.
