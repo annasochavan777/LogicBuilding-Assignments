@@ -1,1 +1,1 @@
-Thank you, Tushar, for investigating the issue. The root cause was the MI Extractor service being in a stopped state. Once this service was started, the cases began reflecting on the MI instance.
+Including these four requirements along with this one will not impact the timeline. Let me know if you want us to include them.
