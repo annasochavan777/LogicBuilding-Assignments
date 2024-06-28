@@ -1,1 +1,1 @@
-We will deploy the mortgage portal code in the NFT environment on Monday, as only Himani and Rahul have access to these environments and they have already logged off for the day. After the deployment, we will test the OAT connectivity.
+From a code readiness perspective, we are prepared for the code drop. However, I am not certain if the highlighted requirements are included in Action 50. Manoj can confirm this.
