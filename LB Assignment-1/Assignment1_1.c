@@ -42,3 +42,11 @@ class Program
 SELECT *
 FROM sys.objects
 WHERE type = 'P' AND name = 'YourProcedureName';
+
+SELECT *
+FROM sys.procedures
+WHERE name = 'YourProcedureName';
+
+SELECT *
+FROM INFORMATION_SCHEMA.ROUTINES
+WHERE ROUTINE_TYPE = 'PROCEDURE' AND ROUTINE_NAME = 'YourProcedureName';
