@@ -38,3 +38,7 @@ class Program
         Debug.Listeners.Add(listener);
     }
 }
+
+SELECT *
+FROM sys.objects
+WHERE type = 'P' AND name = 'YourProcedureName';
