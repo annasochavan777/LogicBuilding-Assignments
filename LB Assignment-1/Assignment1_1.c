@@ -1,6 +1,18 @@
-It seems there is an issue with the case data, as some details, such as product information, are missing. Without product details, it's impossible to submit the case. Can someone look into this issue?
+Sure, here's the rephrased text:
 
-  
-It appears that the product details are missing from the case, but it's unclear how the case was submitted without them. This seems to be an issue on SJI's end. Could someone investigate this problem?
+---
 
-  It appears there is an issue with the case data, as some details, such as product information, are missing. Without these details, it's impossible to submit the case. Additionally, the MI extractor is failing to extract other cases. I am currently investigating these issues.
+Hi Jay,
+
+We have identified the root cause of the MI extractor service failure. The issue is that the data item value below is being received as a string, but it is defined as an integer in the database. This discrepancy is causing the insertion to fail. 
+
+To resolve this, changes are needed on the MSO side, and the SMI team needs to correct the value.
+
+Field in question:
+Customers.1.CreditHistory.ArrearsHighestMonths
+
+Note: This is just one of the fields we have identified so far. We need to review all fields where default values are being set to ensure there are no similar issues.
+
+---
+
+Let me know if any further adjustments are needed!
