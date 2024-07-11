@@ -1,16 +1,5 @@
-# Define the parameters
-param (
-    [string]$projectPath,
-    [string]$packageName,
-    [string]$newVersion
-)
+Sure, here's a revised version of your message:
 
-# Navigate to the project directory
-Set-Location -Path $projectPath
+---
 
-# Update the NuGet package to the specified version
-dotnet add package $packageName --version $newVersion
-
-# Restore the project to ensure all packages are correctly installed
-dotnet restore
-.\UpdateNugetPackage.ps1 -projectPath "C:\path\to\your\project" -packageName "Package.Name" -newVersion "1.2.3"
+Only the gateway component is pending because the code has not been merged into the release branch. All other components are ready. @amol, please proceed with the deployment. We will deploy the pending component tomorrow morning. I will also update the service account details in the payslip calculator component's application pool.
