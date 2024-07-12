@@ -1,3 +1,4 @@
+I have updated the release pages and am currently preparing the mortgage portal patch. We have a dependency: the MAE production URLs need to be ready along with the patch.
 using System;
 using System.Diagnostics;
 using System.IO;
