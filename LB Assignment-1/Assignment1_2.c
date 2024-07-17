@@ -1,21 +1,27 @@
-//////////////////////////////////////////////////////////////
-// Program to print 5 times "Marvellous" on screen.
-// Author : Annaso Chavan
-/////////////////////////////////////////////////////////////
+using System;
+using Microsoft.Practices.EnterpriseLibrary.Logging;
 
-#include<stdio.h>
-void Display()
+class Program
 {
-	int i = 0;
-	for(i = 1; i<=5;i++)
-	{
-		printf("Marvellous\n");
-	}
-}
+    static void Main(string[] args)
+    {
+        // Load the logging configuration
+        Logger.SetLogWriter(new LogWriterFactory().Create());
 
-int main()
-{
-	Display();
-	
-	return 0;
+        // Log a message
+        Logger.Write("This is an information message.", "General");
+
+        // Log an error message with additional properties
+        LogEntry logEntry = new LogEntry
+        {
+            Message = "This is an error message.",
+            Severity = System.Diagnostics.TraceEventType.Error,
+            Title = "Error",
+            Categories = new List<string> { "General" }
+        };
+
+        Logger.Write(logEntry);
+
+        Console.WriteLine("Logging complete.");
+    }
 }
