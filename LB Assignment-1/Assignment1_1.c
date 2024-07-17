@@ -1,1 +1,12 @@
-The issue has been resolved. The root cause was a missed certificate configuration step during the TIAA exit process via B-Cmdb. I will now update the details accordingly.
+<?xml version="1.0" encoding="utf-8" ?>
+<configuration>
+  <system.diagnostics>
+    <trace>
+      <!-- Default settings, can be adjusted as needed -->
+      <listeners>
+        <!-- Optional: Add default listeners if needed -->
+        <!-- Remove TextWriterTraceListener configuration since it's handled in the code -->
+      </listeners>
+    </trace>
+  </system.diagnostics>
+</configuration>
