@@ -1,1 +1,15 @@
-It is not possible to change this in a single place. We need to update all the locations where the log functions are invoked, as the Nlog function names are different.
+<nlog>
+  <targets>
+    <target xsi:type="File" name="logfile" 
+            fileName="logs/${date:format=dd-MM-yyyy}/${date:format=HH}.log"
+            archiveEvery="Hour"
+            archiveNumbering="DateAndSequence"
+            archiveDateFormat="yyyyMMddHH"
+            maxArchiveFiles="6"
+            />
+  </targets>
+
+  <rules>
+    <logger name="*" minlevel="Info" writeTo="logfile" />
+  </rules>
+</nlog>
