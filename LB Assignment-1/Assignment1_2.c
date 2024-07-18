@@ -1,1 +1,1 @@
-fileName="logs/${date:format=dd-MM-yyyy}/${date:format=dd-MM-yyyy-HH}-{#}.log"
+We are not getting any hits on any of the MSO servers, so we need the BUI team to investigate this issue further.
