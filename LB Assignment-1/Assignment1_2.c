@@ -1,1 +1,1 @@
-Yes, it's possible that there is no matching record, resulting in a null value.
+If you are referring only to the event file, then the date can never be null.
