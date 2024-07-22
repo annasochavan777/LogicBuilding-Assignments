@@ -1,1 +1,1 @@
-There was a code issue in the gateway component where the conversion of the API request to our class was failing, resulting in the default value of zero being set. We have now applied a code fix, and it is working correctly.
+The gateway service is showing success but has actually failed due to validation errors.
