@@ -1,17 +1,25 @@
 using System;
 using NLog;
 
-class Program
+namespace YourNamespace
 {
-    private static readonly Logger logger = LogManager.GetCurrentClassLogger();
-
-    static void Main(string[] args)
+    class Program
     {
-        // Example log messages
-        logger.Info("This is an info log message.");
-        logger.Warn("This is a warning log message.");
-        logger.Error("This is an error log message.");
+        private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
 
-        Console.WriteLine("Logging complete. Check the log file for messages.");
+        static void Main(string[] args)
+        {
+            Logger.Info("Application started");
+
+            // Simulate application running
+            for (int i = 0; i < 24; i++)
+            {
+                Logger.Info($"Logging info for hour {i}");
+                System.Threading.Thread.Sleep(1000); // Sleep to simulate time passing
+            }
+
+            Logger.Info("Application ended");
+            LogManager.Shutdown();
+        }
     }
 }
