@@ -1,1 +1,1 @@
-We have identified a discrepancy between the request values and the values stored in the database. Although the request contains the correct values, they are being stored as zero in the database. We need to investigate this issue.
+There was a code issue in the gateway component where the conversion of the API request to our class was failing, resulting in the default value of zero being set. We have now applied a code fix, and it is working correctly.
