@@ -1,8 +1,1 @@
-public void ProcessRequest(string mandatoryParam)
-{
-    if (string.IsNullOrEmpty(mandatoryParam))
-    {
-        throw new ArgumentNullException(nameof(mandatoryParam), "Mandatory parameter is missing.");
-    }
-    // process the request
-}
+We have identified a discrepancy between the request values and the values stored in the database. Although the request contains the correct values, they are being stored as zero in the database. We need to investigate this issue.
