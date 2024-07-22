@@ -1,1 +1,1 @@
-The gateway service is showing success but has actually failed due to validation errors.
+We need to fix this issue and provide details in the response to the caller explaining why the call has failed.
