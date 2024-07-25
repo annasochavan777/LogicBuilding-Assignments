@@ -1,1 +1,1 @@
-The build controller is consuming 100% CPU utilization, causing all builds to fail. This issue is very frustrating for us. We either need to fix some of the build issues or increase the memory on 29 servers.
+Are you forwarding the case requirements to the MSO? I don't see any requests. The Upload Document API is responsible for storing those requirements in the MSO database. If you are calling this API, please provide me with the correlation ID so I can investigate further.
