@@ -11,6 +11,15 @@ public class Program
 {
     public static void Main()
     {
+        var myData = new MyData
+        {
+            Name = "Example",
+            Data = Encoding.UTF8.GetBytes("Hello, World!")
+        };
+
+        // Serialize the object to JSON
+        string jsonString = JsonConvert.SerializeObject(myData);
+        Console.WriteLine("Serialized JSON: " + jsonString);
         string jsonString = "{\"Name\":\"Example\",\"Data\":\"SGVsbG8sIFdvcmxkIQ==\"}";
 
         // Deserialize the JSON string back to an object
