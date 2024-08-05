@@ -1,1 +1,3 @@
-We are seeing this error message in our logs, indicating that we have reached the daily limit for online bookings. Can we increase that limit?
+Certainly! Here's an alternative version:
+
+"My mistake. In the scenario mentioned, those logs will be available in AWS CloudWatch. I will revise the information in the Excel sheet and send it over."
