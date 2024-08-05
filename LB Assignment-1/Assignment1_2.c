@@ -8,14 +8,30 @@ $fileExtensions = "*.txt", "*.log"  # Add more extensions if needed
 # Get all files in the directory and its subdirectories with specified extensions
 $files = Get-ChildItem -Path $directory -Recurse -File -Include $fileExtensions
 
-# Use Select-String to search for the text in the files
-$matchingFiles = $files | ForEach-Object -Parallel {
-    param($file, $searchText)
-    
-    if (Select-String -Path $file.FullName -Pattern $searchText -Quiet) {
-        return $file.FullName
-    }
-} -ArgumentList $searchText -ThrottleLimit 4  # Adjust ThrottleLimit as needed
+# Initialize an array to hold job objects
+$jobs = @()
+
+# Loop through each file and start a background job to search for the text
+foreach ($file in $files) {
+    $jobs += Start-Job -ScriptBlock {
+        param($filePath, $pattern)
+
+        # Use Select-String to search for the pattern in the file
+        if (Select-String -Path $filePath -Pattern $pattern -Quiet) {
+            return $filePath
+        }
+    } -ArgumentList $file.FullName, $searchText
+}
+
+# Wait for all jobs to complete
+$jobs | ForEach-Object { $_ | Wait-Job }
+
+# Collect and output the results from each completed job
+$matchingFiles = $jobs | ForEach-Object {
+    $result = $_ | Receive-Job
+    $_ | Remove-Job
+    if ($result) { $result }
+}
 
 # Output the list of files that contain the search text
 $matchingFiles | ForEach-Object { Write-Output $_ }
