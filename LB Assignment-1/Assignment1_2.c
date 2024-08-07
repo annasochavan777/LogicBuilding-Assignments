@@ -1,1 +1,1 @@
-Regarding the two issues, I have responded to one of them. For the other issue, I have investigated, but I would like to discuss it with you before replying.
+“Out of all the reported fields, only 27 appear to be relevant. Three of these have been successfully stored in the case Hive, but the remaining 24 have not. We need to correct the mapping for those fields.”
