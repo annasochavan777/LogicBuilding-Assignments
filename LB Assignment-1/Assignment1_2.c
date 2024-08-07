@@ -1,37 +1,44 @@
-using Newtonsoft.Json;
-using System;
-
-public class MyData
+public static Money GetTotalIndebtedness(ApplicationData data)
 {
-    public string Name { get; set; }
-    public byte[] Data { get; set; }
-}
-
-public class Program
-{
-    public static void Main()
+    var totalIndebtedness = new BigDecimal(0);
+    BigDecimal totalRunningPartCcBalance = null;
+    BigDecimal reservedLimitPrimaryCcItem = null;
+    BigDecimal outstandingPartCcBal = null;
+    
+    if (data.ApplicantOverviewResponse?.LinkedMortgages != null &&
+        data.ApplicantOverviewResponse.LinkedMortgages.Count > 0)
     {
-        var myData = new MyData
-        {
-            Name = "Example",
-            Data = Encoding.UTF8.GetBytes("Hello, World!")
-        };
-
-        // Serialize the object to JSON
-        string jsonString = JsonConvert.SerializeObject(myData);
-        Console.WriteLine("Serialized JSON: " + jsonString);
-        string jsonString = "{\"Name\":\"Example\",\"Data\":\"SGVsbG8sIFdvcmxkIQ==\"}";
-
-        // Deserialize the JSON string back to an object
-        try
-        {
-            var myData = JsonConvert.DeserializeObject<MyData>(jsonString);
-            Console.WriteLine("Deserialized Name: " + myData.Name);
-            Console.WriteLine("Deserialized Data: " + BitConverter.ToString(myData.Data));
-        }
-        catch (Exception ex)
-        {
-            Console.WriteLine("Deserialization error: " + ex.Message);
-        }
+        totalRunningPartCcBalance = data.ApplicantOverviewResponse.LinkedMortgages
+            .Where(m => m.NonNull())
+            .SelectMany(m => m.LinkedMortgage)
+            .Where(m => m.MultiPartMortgage)
+            .Select(m => m.CurrentAccountReserveBalance)
+            .Aggregate(new BigDecimal(0), (current, value) => current.Add(value));
+        
+        outstandingPartCcBal = data.ApplicantOverviewResponse.LinkedMortgages
+            .SelectMany(m => m.LinkedMortgage)
+            .Where(m => m.MultiPartMortgage)
+            .Select(m => m.OutstandingPartCcBalance)
+            .Aggregate(new BigDecimal(0), (current, value) => current.Add(value));
     }
+
+    totalIndebtedness = totalIndebtedness.Add(totalRunningPartCcBalance);
+    totalIndebtedness = totalIndebtedness.Add(outstandingPartCcBal);
+
+    var appliedIndicator = data.ApplicantOverviewResponse?.LoanSummary?.LoanData
+        .Where(d => d.FA)
+        .Select(d => d.AdditionalLoanRequired)
+        .FirstOrDefault();
+
+    if (appliedIndicator != null && data.ApplicantOverviewResponse?.LoanSummary != null)
+    {
+        var totalLoanAmount = data.ApplicantOverviewResponse.LoanSummary.LoanData
+            .Where(d => d.AdditionalLoanRequired)
+            .Select(d => d.TotalLoanAmount)
+            .Aggregate(new BigDecimal(0), (current, value) => current.Add(value));
+        
+        totalIndebtedness = totalIndebtedness.Add(totalLoanAmount);
+    }
+
+    return new Money(totalIndebtedness.ToDouble(), "GBP");
 }
