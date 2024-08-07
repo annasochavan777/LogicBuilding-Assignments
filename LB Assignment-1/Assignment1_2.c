@@ -1,3 +1,1 @@
-Here's a rephrased version of your message:
-
-"I don't have any background on these defects. Does anyone have information about them so I can understand and start investigating?"
+Regarding the two issues, I have responded to one of them. For the other issue, I have investigated, but I would like to discuss it with you before replying.
