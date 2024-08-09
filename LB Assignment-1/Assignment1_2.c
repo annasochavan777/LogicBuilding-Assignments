@@ -2,14 +2,14 @@ using System;
 using System.Collections.Generic;
 using System.Reflection;
 
-public class ObjectToDictionaryConverter
+public class ObjectToStringDictionaryConverter
 {
-    public static Dictionary<string, object> ConvertToDictionary(object obj)
+    public static List<string> ConvertToStringDictionary(object obj)
     {
         if (obj == null)
             throw new ArgumentNullException(nameof(obj));
 
-        var dictionary = new Dictionary<string, object>();
+        var stringList = new List<string>();
 
         // Get the type of the object
         Type type = obj.GetType();
@@ -23,11 +23,11 @@ public class ObjectToDictionaryConverter
             // Get the value of the property
             object propertyValue = property.GetValue(obj, null);
 
-            // Add the property name and value to the dictionary
-            dictionary.Add(propertyName, propertyValue);
+            // Add the formatted string to the list
+            stringList.Add($"key: {propertyName}, value: {propertyValue}");
         }
 
-        return dictionary;
+        return stringList;
     }
 }
 
@@ -49,12 +49,12 @@ public class Program
             IsEmployed = true
         };
 
-        var dictionary = ObjectToDictionaryConverter.ConvertToDictionary(exampleObject);
+        var stringDictionary = ObjectToStringDictionaryConverter.ConvertToStringDictionary(exampleObject);
 
-        // Print the dictionary
-        foreach (var kvp in dictionary)
+        // Print the string representations
+        foreach (var entry in stringDictionary)
         {
-            Console.WriteLine($"{kvp.Key}: {kvp.Value}");
+            Console.WriteLine(entry);
         }
     }
 }
