@@ -1,3 +1,20 @@
-Here's a rephrased version:
-
-"I agree with you, Tony. If we set this value to true, we can handle both scenarios: if the address search fails, this flag allows for manual entry; otherwise, if the address is auto-populated, the flag becomes irrelevant."
+<configuration>
+  <system.diagnostics>
+    <sources>
+      <source name="MyAppTraceSource" switchName="sourceSwitch" switchType="System.Diagnostics.SourceSwitch">
+        <listeners>
+          <add name="textListener" />
+        </listeners>
+      </source>
+    </sources>
+    <switches>
+      <add name="sourceSwitch" value="Verbose" />
+    </switches>
+    <sharedListeners>
+      <add name="textListener" 
+           type="System.Diagnostics.TextWriterTraceListener" 
+           initializeData="trace.log" />
+    </sharedListeners>
+    <trace autoflush="true" />
+  </system.diagnostics>
+</configuration>
